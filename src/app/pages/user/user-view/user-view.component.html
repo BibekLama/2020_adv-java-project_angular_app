@@ -1,0 +1,58 @@
+<div class="card shadow-sm rounded-5 user-view">
+    <div class="navbar card-header col m-0">
+        <span class="h5">Detail</span>
+        <div *ngIf="isLoading" class="mr-auto ml-3 text-secondary">
+            <div class="spinner-border spinner-border-sm text-secondary mr-2" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>Loading...</span>
+        </div>
+        <div>
+            <button *ngIf="user" click="hand" class="btn btn-sm btn-danger" data-toggle="modal" [attr.data-target]="'#deleteDialog-'+user.loginName"> 
+                <i class="fa fa-trash"></i> Delete
+            </button>
+            <app-delete-dialog *ngIf="user" class="modal fade" tabindex="-1" role="dialog" 
+                        [id]="'deleteDialog-'+user.loginName" 
+                        [itemName]="user.loginName" 
+                        [itemID]="user.loginName" 
+                        (handleDelete)="handleDelete($event)"></app-delete-dialog>
+        </div>
+    </div>
+
+    <div *ngIf="user" class="card-body">
+        <app-message-display *ngIf="message" [message]="message"></app-message-display>
+        <div class="row">
+            <div class="col-sm-2 h5 quiz-item-title">Login Name</div>
+            <div class="col-sm-10">
+                <abbr title="Quiz title">{{user.loginName}}</abbr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 h5 quiz-item-title">Email</div>
+            <div class="col-sm-10">
+                <abbr title="Quiz access code">{{user.email}}</abbr>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="answers">
+    <div class="card shadow-sm rounded-5 answer-view"  *ngFor="let answer of answers; let i = index;">
+        <div class="navbar card-header col m-0">
+            <span class="h5">{{answer.question.title}}</span>
+        </div>
+        <div class="card-body">
+            <span>{{answer.answer.content}}</span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mcqanswers">
+    <div class="card shadow-sm rounded-5 answer-view"  *ngFor="let answer of mcqanswers; let i = index;">
+        <div class="navbar card-header col m-0">
+            <span class="h5">{{answer.question.title}}</span>
+        </div>
+        <div class="card-body">
+            <span>{{answer.mcqanswer.content}}</span>
+        </div>
+    </div>
+</div>

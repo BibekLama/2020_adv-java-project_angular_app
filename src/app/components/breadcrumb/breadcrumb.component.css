@@ -1,0 +1,28 @@
+.breadcrumb > li > a{
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.breadcrumb li::before {
+    content: '/';
+    color: darkgrey;
+}
+
+.breadcrumb li:first-child::before {
+    content: ''
+}
+
+.breadcrumb{
+    margin:0;
+    background: #eaeaea;
+    padding:0;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.breadcrumbs {
+    border:none;
+    border-radius:0;
+    background:#eaeaea;
+    border-bottom:1px solid #ddd;
+    margin-bottom:20px;
+}

@@ -1,0 +1,12 @@
+<app-message-display *ngIf="message" [message]="message"></app-message-display>
+<div class="d-flex p-3 bg-white quiz-header justify-content-between shadow-sm">
+    <span>Create Quiz</span>
+    <div *ngIf="isLoading" class="mr-auto ml-3 text-secondary">
+        <div class="spinner-border spinner-border-sm text-secondary mr-2" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <span>Loading...</span>
+    </div>
+    <button [routerLink]="['/quiz']" class="btn btn-sm btn-primary">Back</button>
+</div>
+<app-form-quiz (onSubmit)="onSubmit($event)"></app-form-quiz>

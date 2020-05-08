@@ -1,0 +1,31 @@
+<app-message-display *ngIf="message" [message]="message"></app-message-display>
+
+<form [formGroup]="form" class="card offset-3 col-6 px-5 py-3 rounded-10 shadow-sm mt-5 bg-light form">
+    <div class="py-3">
+        <div *ngIf="isLoading">
+            <div class="spinner-border spinner-border-sm mr-3" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            Loading...
+        </div>
+    </div>
+    <div class="form-group" [ngClass]="displayFieldCss('loginName')">
+        <label for="loginName">Login Name</label>
+        <input type="text" class="form-control" id="email" formControlName="loginName">
+        <app-field-error-display [displayError]="isFieldValid('loginName')" errorMsg="Please enter your full name">
+        </app-field-error-display>
+    </div>
+    <div class="form-group" [ngClass]="displayFieldCss('email')">
+        <label for="emai">Email address</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please enter your correct email address">
+        </app-field-error-display>
+    </div>
+    <div class="form-group" [ngClass]="displayFieldCss('code')">
+        <label for="code">Quiz Code</label>
+        <input type="text" class="form-control" id="code" formControlName="code">
+        <app-field-error-display [displayError]="isFieldValid('code')" errorMsg="Please enter quiz code">
+        </app-field-error-display>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</form>

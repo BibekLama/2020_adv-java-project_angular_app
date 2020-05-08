@@ -1,0 +1,4 @@
+<form [formGroup]="form" class="form-inline">
+    <input class="form-control form-control-sm mr-sm-2" formControlName="searchText">
+    <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" (click)="onSearch()" [disabled]="!form.valid">Search</button>
+</form>

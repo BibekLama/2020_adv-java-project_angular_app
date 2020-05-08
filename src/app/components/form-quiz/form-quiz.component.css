@@ -1,0 +1,18 @@
+.form-box{
+    background:#FFF;
+    border:1px solid #ccc;
+    border-top:6px solid rgb(44, 141, 231);
+    border-radius:10px;
+}
+
+.form-box > .detail-header,
+.question-form-box > .detail-header{
+    border-bottom:1px solid #ccc;
+}
+
+.question-form-box{
+    background:#FFF;
+    border:1px solid #ccc;
+    border-left:6px solid rgb(250, 68, 114);
+    border-radius:10px;
+}

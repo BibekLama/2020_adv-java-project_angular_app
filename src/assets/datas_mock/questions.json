@@ -1,0 +1,6 @@
+[
+    {"id": 1, "title": "What is Java?", "quiz":1, "questionType":"Open"},
+    {"id": 2, "title": "What is Angula?r", "quiz":2, "questionType":"MCQ"},
+    {"id": 3, "title": "What is HTML/CSS", "quiz":4, "questionType":"Open"},
+    {"id": 4, "title": "What is Database Management?", "quiz":3, "questionType":"MCQ"}
+]

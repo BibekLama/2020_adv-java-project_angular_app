@@ -1,0 +1,71 @@
+<app-message-display *ngIf="message" [message]="message"></app-message-display>
+<div class="card shadow-sm rounded-5 quiz-view">
+    <div class="navbar card-header col m-0">
+        <span class="h5">{{ user ? user.loginName: 'User Login Name' }}</span>
+        <div *ngIf="isLoading" class="mr-auto ml-3 text-secondary">
+            <div class="spinner-border spinner-border-sm text-secondary mr-2" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>Loading...</span>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2 h5 quiz-item-title">Quiz</div>
+            <div class="col-sm-10">
+                <abbr title="Quiz title">{{quiz ? quiz.title: 'Quiz title'}}</abbr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 h5 quiz-item-title">User</div>
+            <div class="col-sm-10">
+                <abbr title="Quiz title">{{user ? user.email: 'User Email'}}</abbr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 h5 quiz-item-title">Result</div>
+            <div class="col-sm-10">
+                <abbr title="Quiz title">0/{{quiz ? quiz.questions.length : '0'}}</abbr>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup]="form">
+    <div class="card shadow-sm rounded-5 question-view"  *ngFor="let question of quiz.questions; let i = index;">
+        <div class="navbar card-header col m-0">
+            <span class="h5">Question #{{i+1}}</span>
+        </div>
+        <div class="card-body">
+            <h5>{{question.title}}</h5>
+            <div class="form-group row" [ngClass]="displayFieldCss('answer'+i)" *ngIf="question.type =='Open Content'">
+                <label for="title" class="col-sm-2 col-form-label">Answer</label>
+                <div class="col-sm-10">
+                    <input type="hidden" [formControlName]="'type'+i">
+                    <textarea class="form-control" rows="4" [formControlName]="'answer'+i"></textarea>
+                    <app-field-error-display [displayError]="isFieldValid('answer'+i)" errorMsg="Please enter answer">
+                    </app-field-error-display>
+                </div>
+            </div>
+            <div *ngIf="question.type=='Multiple Choice'">
+                <div class="form-check" *ngFor="let choice of question.choices; let cindex = index;">
+                    <input class="form-check-input" type="checkbox" id="choice" [formControlName]="'question'+i+'choice'+cindex">
+                    <label class="form-check-label" for="choice">
+                        {{choice.choice}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 p-3 d-flex justify-content-start border border-secondary rounded-lg shadow">
+        <button class="btn btn-lg btn-success mr-2" (click)="onSubmitForm()">Submit</button>
+        <div *ngIf="isLoading" class="mr-auto ml-3 text-secondary">
+            <div class="spinner-border spinner-border-sm text-secondary mr-2" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>Loading...</span>
+        </div>
+    </div>
+</form>
